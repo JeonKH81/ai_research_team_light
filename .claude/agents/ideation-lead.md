@@ -52,7 +52,7 @@ model: opus
 
 - **상류:** 총괄팀장
 - **하류:** idea-generator, gap-analyst, lit-scout, methodologist, adversarial-reviewer
-- 팀장와 직접 통신하지 않는다. 채택된 주제는 총괄팀장가 프로젝트로 승격시킨다.
+- 팀장와 직접 통신하지 않는다. 채택된 주제는 총괄팀장이 프로젝트로 승격시킨다.
 
 ## 팀 통신 프로토콜
 
