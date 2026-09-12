@@ -13,6 +13,11 @@
     python3 portfolio.py          # 무엇이 바뀌는지 보여주기만
     python3 portfolio.py --write  # 실제로 쓴다
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, io, re, sys, argparse, datetime
 
 try:

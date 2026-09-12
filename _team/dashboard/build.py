@@ -11,6 +11,11 @@
 게시는 사람이 한다 — 세션에서 Artifact 도구로 `dist/lab-dashboard.html`을 올린다.
 주소는 고정이며 같은 파일을 다시 올리면 같은 주소가 갱신된다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, re, sys, base64, argparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))

@@ -19,8 +19,17 @@
 API는 전부 키가 필요 없다: PubMed E-utilities · medRxiv · arXiv · ClinicalTrials.gov v2.
 LLM 방법론은 학술지보다 arXiv가 몇 달 빠르므로 그쪽을 먼저 본다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, sys, io, json, time, argparse, datetime, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
+try:                       # 운영체제가 믿는 인증서를 그대로 쓴다 (병원망 대응). 없어도 돈다
+    import truststore; truststore.inject_into_ssl()
+except Exception:
+    pass
 from collections import OrderedDict
 from pathlib import Path
 

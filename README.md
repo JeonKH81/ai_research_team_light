@@ -61,12 +61,12 @@ flowchart TB
 ```bash
 git clone https://github.com/JeonKH81/ai_research_team_light.git ~/ai_research_team_light   # 내려받습니다
 cd ~/ai_research_team_light
-zsh install.sh                                     # 필요한 것을 확인하고 첫 현황판을 만듭니다
+python3 install.py                                 # 필요한 것을 확인하고 첫 현황판을 만듭니다 (윈도우: python install.py)
 claude                                             # 이 창이 총괄팀장입니다
 ```
 
 Claude Code 창이 열리면 첫 대화에서 **`/setup`** (다섯 문항, 10분) → 이어서 **`/hands-on`** 이라고 칩니다.
-그다음부터는 총괄팀장이 여덟 단계를 하나씩 끌고 갑니다.
+그다음부터는 총괄팀장이 여덟 단계를 하나씩 끌고 갑니다. 윈도우는 `python install.py` — 나머지는 같습니다([설치 문서](docs/설치.md#윈도우에서는)).
 
 본보기 연구 한 건(`projects/P01_demo-ecg-sr` — `Terra_DEMO-SR`, 지어낸 체계적 고찰)이 들어 있어
 설치 직후에도 화면이 채워져 보입니다. 한 바퀴 둘러본 뒤 지우고 자기 연구를 넣으면 됩니다.
@@ -100,7 +100,7 @@ Claude Code 창이 열리면 첫 대화에서 **`/setup`** (다섯 문항, 10분
 
 ## 필요한 것
 
-- **macOS 또는 Linux**, **Python 3.9 이상** (+ `pyyaml` — `install.sh` 가 넣습니다)
+- **macOS 또는 Linux**, **Python 3.9 이상** (+ `pyyaml` — `install.py` 가 넣습니다)
 - **Claude Code** + Claude 구독 로그인 (별도 열쇠 불필요)
 - **인터넷** — 문헌 수집에만 씁니다. 받아오는 곳(PubMed·medRxiv·arXiv·ClinicalTrials.gov)은 등록도 열쇠도 필요 없습니다
 

@@ -12,6 +12,11 @@
   daily_brief.py --days 7     기간 지정
   daily_brief.py --quiet      변화가 없으면 아무것도 출력하지 않는다 (자동 실행용)
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, io, sys, socket, glob, unicodedata, argparse, datetime, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

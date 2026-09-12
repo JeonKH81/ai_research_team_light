@@ -12,7 +12,7 @@ description: 핸즈온 참석자를 처음부터 끝까지 단계별로 끌고 �
 
 ## 0. 설치 확인
 
-`install.sh` 가 이미 확인을 한 번 돌렸다. 총괄이 `python3 _team/scripts/check.py` 를 다시 돌려 **지금** 상태를 본다. 설치 직후엔 '설정 문답' 한 줄만 ✗ 인 것이 정상 — 그것은 1단계에서 푼다. 다른 ✗ 는 그 줄이 시키는 대로 고친 뒤 다시.
+`install.py` 가 이미 확인을 한 번 돌렸다. 총괄이 `python3 _team/scripts/check.py` 를 다시 돌려 **지금** 상태를 본다. 설치 직후엔 '설정 문답' 한 줄만 ✗ 인 것이 정상 — 그것은 1단계에서 푼다. 다른 ✗ 는 그 줄이 시키는 대로 고친 뒤 다시.
 
 ## 1. 설정 문답
 
@@ -21,7 +21,7 @@ description: 핸즈온 참석자를 처음부터 끝까지 단계별로 끌고 �
 
 ## 2. 본보기 현황판 둘러보기
 
-`open _team/dashboard/dist/lab-dashboard.html`. 보여야 하는 것: 팀 10줄 중 `Terra_DEMO-SR` 하나가 진행 중, 나머지 미배정.
+`open _team/dashboard/dist/lab-dashboard.html        # 윈도우: start _team\dashboard\dist\lab-dashboard.html`. 보여야 하는 것: 팀 10줄 중 `Terra_DEMO-SR` 하나가 진행 중, 나머지 미배정.
 설명 한 줄: *이 화면은 손으로 그리지 않습니다. 등록부와 카드에서 매번 다시 만들어집니다.* 팀 줄을 눌러 상세를 보여 준다.
 
 ## 3. 내 연구 하나 등록

@@ -9,6 +9,11 @@
 
 Claude Code 안에서 `/setup` 이라고 치면 같은 문답을 대화로 한다 — 검색식을 대신 만들어 준다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, sys, re, io, datetime, subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -179,7 +184,7 @@ def apply(cfg, preview=True):
         r = subprocess.run([sys.executable, os.path.join(HERE, "discover.py"), "--days", "7", "--dry"], capture_output=True, text=True, timeout=180)
         print("  " + "\n  ".join((r.stdout or r.stderr).strip().splitlines()[-8:]))
         if "실패" in (r.stdout + r.stderr) or "CERTIFICATE" in (r.stdout + r.stderr):
-            print("  → 병원망이면: zsh _team/scripts/fix_certificates.sh  를 한 번 돌리고 다시 해 보세요")
+            print("  → 병원망이면: python3 install.py 를 다시 돌려 인증서 부품(truststore)을 넣고, 맥에서 그래도 안 되면 zsh _team/scripts/fix_certificates.sh")
     print("\n다음: 현황판을 엽니다 →  open _team/dashboard/dist/lab-dashboard.html")
 
 

@@ -13,6 +13,11 @@
 
 보고는 사람(팀장 창)이 한다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, sys, hashlib, argparse, datetime, glob
 
 try:

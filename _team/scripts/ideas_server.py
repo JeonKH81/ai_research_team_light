@@ -16,6 +16,11 @@
 세 판정 모두 `_team/ideas/_decisions.tsv` 에 날짜·후보·판정·사유로 남는다.
 되돌리려면 그 기록을 보고 카드를 되돌리면 된다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import http.server, socketserver, json, os, io, re, shutil, datetime, threading, subprocess
 
 PORT = int(os.environ.get("IDEAS_PORT", 8790))

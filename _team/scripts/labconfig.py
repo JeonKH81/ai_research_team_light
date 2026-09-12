@@ -6,6 +6,11 @@
 
 파일이 없거나 항목이 빠져 있으면 기본값으로 채운다 — 설정 없이도 돈다.
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, sys, datetime
 
 TEAM = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

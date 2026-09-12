@@ -17,6 +17,11 @@
   refresh.py          갱신 후 build.py 로 구조 검사
   refresh.py --dry    무엇이 바뀌는지만 출력
 """
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(encoding="utf-8", errors="replace"); _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 import os, re, sys, json, glob, argparse, datetime, subprocess, collections
 
 try:
