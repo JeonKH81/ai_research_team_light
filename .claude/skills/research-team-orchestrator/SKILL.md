@@ -183,7 +183,7 @@ Agent(subagent_type: "general-purpose", name: "cap-{팀라벨}", model: "opus",
 
 ## 1인 연구실 — 제2검토자 확보
 
-이 연구실은 연구자 1인이다. 제2검토자를 사람으로 세우기 어려우므로 **생성한 쪽이 스스로 검증하지 않게** 한다 — 산출물마다 `adversarial-reviewer`(Critic)를 한 번 통과시키고, AI가 한 판정은 논문에 그대로 밝힌다. (정식판에는 다른 모델로 교차 검토하는 Auditor 자리가 있다.) 상세 규칙은 `_team/single_investigator_policy.md`.
+이 연구실은 연구자 1인이다. 제2검토자를 사람으로 세우기 어려우므로 **생성한 쪽이 스스로 검증하지 않게** 한다 — 산출물마다 `adversarial-reviewer`(Critic)를 한 번 통과시키고, AI가 한 판정은 논문에 그대로 밝힌다. (정식판에는 다른 모델로 교차 검토하는 Auditor 자리가 있다.)
 
 ## 팀 범위 경계
 
