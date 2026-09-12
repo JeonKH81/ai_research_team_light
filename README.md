@@ -59,7 +59,7 @@ flowchart TB
 ## 30분 시작하기
 
 ```bash
-git clone <저장소 주소> ~/ai_research_team_light   # 내려받습니다
+git clone https://github.com/JeonKH81/ai_research_team_light.git ~/ai_research_team_light   # 내려받습니다
 cd ~/ai_research_team_light
 zsh install.sh                                     # 필요한 것을 확인하고 첫 현황판을 만듭니다
 claude                                             # 이 창이 총괄팀장입니다
