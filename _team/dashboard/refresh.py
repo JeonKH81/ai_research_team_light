@@ -6,7 +6,7 @@
 
 갱신하는 구역:
   stamp     기준 날짜
-  stats     통계 5칸 (플랜 한도 카드는 수동값이라 그대로 옮긴다)
+  stats     통계 4칸
   teams     10개 팀 줄 — 단계·배지·색
   aging     마지막 활동으로부터 경과일 (파일 수정시각 기준)
 그리고 `const TEAMS` 안의 stage·badge·path.
@@ -217,8 +217,6 @@ def block_stats(reg, rows, now):
     L.append('      <div class="d">팀별 상세는 registry.yaml</div></div>')
     L.append('    <div class="stat s-ok"><div class="k">투고</div><div class="v num">%d</div>' % len(sub))
     L.append('      <div class="d">%s</div></div>' % (" · ".join(r["label"] for r in sub) or "없음"))
-    # 플랜 한도는 손으로 넣는 값이라 있던 것을 그대로 옮긴다
-    L.append(PLAN_CARD)
     return "\n".join(L)
 
 
