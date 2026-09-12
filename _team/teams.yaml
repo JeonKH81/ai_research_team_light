@@ -1,0 +1,80 @@
+# 10개 고정 연구팀 — 이름 규칙: planets. 바꾸려면 lab.yaml 을 고치고 setup.py --apply
+규칙:
+- 팀은 10개로 고정한다. 프로젝트가 끝나면 같은 팀이 다음 프로젝트를 받는다.
+- 팀 이름은 순서나 우선순위를 뜻하지 않는다. 우선순위는 portfolio.md에만 둔다.
+- 각 팀에는 Captain 1명이 있고 연구원은 공용 풀에서 소집한다.
+- '팀 호칭은 `팀이름_약어` 형태로 쓴다 (예: Terra_DEMO-SR). 프로젝트가 바뀌면 약어만 갈아끼운다.'
+- 배정은 `project-intake` 가 등록부와 함께 고친다.
+teams:
+- name: Mercury
+  ko: 수성
+  slug: mercury
+  project: null
+  stage: idle
+  code: 미배정
+  label: Mercury
+- name: Venus
+  ko: 금성
+  slug: venus
+  project: null
+  stage: idle
+  code: 미배정
+  label: Venus
+- name: Terra
+  ko: 지구
+  slug: terra
+  project: AI 안저사진 판독 진단정확도 체계적 고찰 (본보기)
+  legacy_id: P01
+  stage: protocol
+  why: 연구실의 기반 근거를 만드는 자리
+  code: DEMO-SR
+  label: Terra_DEMO-SR
+- name: Mars
+  ko: 화성
+  slug: mars
+  project: null
+  stage: idle
+  code: 미배정
+  label: Mars
+- name: Jupiter
+  ko: 목성
+  slug: jupiter
+  project: null
+  stage: idle
+  code: 미배정
+  label: Jupiter
+- name: Saturn
+  ko: 토성
+  slug: saturn
+  project: null
+  stage: idle
+  code: 미배정
+  label: Saturn
+- name: Uranus
+  ko: 천왕성
+  slug: uranus
+  project: null
+  stage: idle
+  code: 미배정
+  label: Uranus
+- name: Neptune
+  ko: 해왕성
+  slug: neptune
+  project: null
+  stage: idle
+  code: 미배정
+  label: Neptune
+- name: Ceres
+  ko: 세레스
+  slug: ceres
+  project: null
+  stage: idle
+  code: 미배정
+  label: Ceres
+- name: Pluto
+  ko: 명왕성
+  slug: pluto
+  project: null
+  stage: idle
+  code: 미배정
+  label: Pluto

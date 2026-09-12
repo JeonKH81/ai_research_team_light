@@ -1,0 +1,34 @@
+# 등록부 — 이 파일이 프로젝트의 정본이다.
+# stage: idea|protocol|design|data|analysis|writing|review|submitted|published|onhold
+# team: 10개 고정 팀 (_team/teams.yaml). 호칭은 label(행성_약어)을 쓴다.
+# 상태 변경은 report.py 로 한다 — 손으로 고치면 status_log.tsv와 어긋난다.
+#
+# 아래 세 건은 **본보기 자료**다. 연습이 끝나면 지우고 자기 연구를 넣는다.
+projects:
+- id: P01
+  slug: demo-ecg-sr
+  title: AI 안저사진 판독의 당뇨망막병증 진단정확도 체계적 고찰 (본보기)
+  type: meta-analysis
+  stage: protocol
+  priority: 1
+  path: projects/P01_demo-ecg-sr
+  registered: true
+  demo: true
+  blockers:
+  - 검색식 동료검토(PRESS) 회신 대기 — 제2검토자
+  next: 검색식 v0.1 PRESS 회신 반영 → 6개 정보원 시험 검색 → 프로토콜 v1.0 확정 후 등록
+  updated: '2026-09-08'
+  team: Terra
+  team_ko: 지구
+  code: DEMO-SR
+  label: Terra_DEMO-SR
+  second_reviewer: adversarial-reviewer (Critic) — 생성한 쪽이 스스로 검증하지 않는다
+  circular_reasoning_risk: false
+  open_items:
+  - what: PROSPERO 등록 계정 개설
+    who: 연구책임자
+    done_when: 등록 계정으로 로그인해 초안 서식을 한 번 저장한 것을 확인
+    since: '2026-09-01'
+    checked: ''
+  last_report: '2026-09-08: 프로토콜 v0.1과 검색계획 v0.1 초안 완료. 정보원 6개 후보 확정, 시험 검색은 PRESS 회신 뒤로.'
+closed: []

@@ -1,0 +1,41 @@
+# 이 연구실의 설정 — `/setup` 문답(또는 `python3 _team/scripts/setup.py`)의 답이 여기 남는다.
+# 현황판·브리핑·문헌 수집이 이 파일을 읽는다. 손으로 고쳤으면 `python3 _team/scripts/setup.py --apply`.
+
+lab_name: AI Research Team
+
+pi:
+  field: ""          # 연구책임자 전공 — 발굴팀이 후보를 낼 출발점
+  institution: ""
+  contact_email: ""  # 문헌 수집기가 PubMed 에 자기를 밝힐 때 (선택)
+
+teams:
+  scheme: planets    # planets(태양계 10개) 또는 custom(아래 names). 팀은 언제나 10개
+  names:
+    - {name: Mercury, ko: 수성}
+    - {name: Venus,   ko: 금성}
+    - {name: Terra,   ko: 지구}
+    - {name: Mars,    ko: 화성}
+    - {name: Jupiter, ko: 목성}
+    - {name: Saturn,  ko: 토성}
+    - {name: Uranus,  ko: 천왕성}
+    - {name: Neptune, ko: 해왕성}
+    - {name: Ceres,   ko: 세레스}
+    - {name: Pluto,   ko: 명왕성}
+
+schedule:
+  lab_meeting:
+    enabled: true
+    weekday: 1         # 0=월 1=화 2=수 3=목 4=금 5=토 6=일
+    time: "07:00"
+    interval_weeks: 1  # 1=매주 2=격주
+    anchor: "2026-09-01"
+
+ideation:
+  enabled: true
+  # 관심 영역 — 수집기가 훑는 곳. `/setup` 이 채운다. sources 는 pubmed / medrxiv / arxiv / trials 중 고른 것.
+  topics:
+    - key: example-field
+      label: (본보기) 내 전공 × 인공지능
+      sources: [pubmed, medrxiv]
+      pubmed: '(cardiolog*[tiab] OR "heart failure"[tiab]) AND ("machine learning"[tiab] OR "deep learning"[tiab] OR "artificial intelligence"[tiab])'
+      medrxiv: [heart failure machine learning]

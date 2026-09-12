@@ -1,0 +1,5 @@
+date	team	source	stage_from	stage_to	blockers	note
+2026-08-26	Terra	PI	idea	protocol	2	본보기 프로젝트 등록. 연구 질문·범위 확정, 프로토콜 초안 착수
+2026-08-29	Terra	Terra	protocol	protocol	2	프로토콜 v0.1 초안 완료. 적격기준 4갈래·비뚤림 평가 도구 지정
+2026-09-03	Terra	Terra	protocol	protocol	1	검색계획 v0.1 작성. 정보원 6개 후보 확정. PRESS 동료검토 의뢰
+2026-09-08	Terra	PI	protocol	protocol	1	카드 정리 — 대기를 'PRESS 회신' 한 건으로 줄임. 나머지는 할 일로 옮김
