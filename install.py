@@ -50,8 +50,8 @@ if not have("yaml") or (sys.version_info >= (3, 10) and not have("truststore")):
 
 r = subprocess.run([PY, os.path.join("_team", "dashboard", "refresh.py")], capture_output=True, text=True)
 print("첫 현황판을 만들었습니다." if r.returncode == 0 else "✗ 현황판을 만들지 못했습니다:\n" + (r.stderr or r.stdout).strip()[-300:], flush=True)
-print(, flush=True)
+print(flush=True)
 sys.stdout.flush(); subprocess.run([PY, os.path.join("_team", "scripts", "check.py")]); sys.stdout.flush()
-print(, flush=True)
+print(flush=True)
 print("다음:  claude   ← 이 폴더에서 열면 그 창이 총괄팀장입니다. 첫 대화에서  /setup  이라고 치세요.", flush=True)
 print("현황판 열기:  " + ("start _team\\dashboard\\dist\\lab-dashboard.html" if WIN else "open _team/dashboard/dist/lab-dashboard.html"), flush=True)
