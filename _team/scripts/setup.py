@@ -141,39 +141,70 @@ def apply(cfg, preview=True):
     tp = os.path.join(TEAM, "teams.yaml")
     old = yaml.safe_load(io.open(tp, encoding="utf8")) if os.path.exists(tp) else {}
     olds = {t["name"]: t for t in (old.get("teams") or [])}
-    teams = []
-    for t in cfg["teams"]["names"]:
-        keep = olds.get(t["name"])
-        if keep:
-            keep = dict(keep); keep["ko"] = t["ko"]; keep["slug"] = t["name"].lower(); teams.append(keep)
-        else:
-            teams.append({"name": t["name"], "ko": t["ko"], "slug": t["name"].lower(), "project": None, "stage": "idle", "code": "미배정", "label": t["name"]})
-    # 이름이 바뀐 자리: 옛 i번째 팀에 프로젝트가 있으면 새 i번째 이름으로 옮긴다 (등록부도 함께)
     oldnames = [t["name"] for t in (old.get("teams") or [])]
-    renamed = {}
-    for i, t in enumerate(teams):
-        if i < len(oldnames) and oldnames[i] != t["name"] and olds[oldnames[i]].get("project"):
-            src = olds[oldnames[i]]
-            t.update(project=src.get("project"), stage=src.get("stage"), code=src.get("code"),
+    newnames = [t["name"] for t in cfg["teams"]["names"]]
+    # 대응표: 이름이 그대로면 같은 팀(순서가 바뀌어도). 사라진 옛 이름은 "그 자리에 새로 생긴 이름"으로 옮긴다.
+    rename = {}
+    gone = [n for n in oldnames if n not in newnames]
+    born = [n for n in newnames if n not in oldnames]
+    for g in gone:
+        pos = oldnames.index(g)
+        if pos < len(newnames) and newnames[pos] in born:
+            rename[g] = newnames[pos]; born.remove(newnames[pos])
+        elif born:
+            rename[g] = born.pop(0)
+    teams, used = [], set()
+    for t in cfg["teams"]["names"]:
+        src = olds.get(t["name"]) or next((olds[g] for g, n in rename.items() if n == t["name"]), None)
+        e = {"name": t["name"], "ko": t["ko"], "slug": t["name"].lower(), "project": None, "stage": "idle", "code": "미배정", "label": t["name"]}
+        if src and src.get("project") and src.get("legacy_id", src.get("project")) not in used:
+            e.update(project=src.get("project"), stage=src.get("stage") or "idle", code=src.get("code") or "?",
                      label="%s_%s" % (t["name"], src.get("code") or "?"), legacy_id=src.get("legacy_id"))
-            renamed[oldnames[i]] = t["name"]
-    if renamed:
-        rp2 = os.path.join(TEAM, "registry.yaml")
-        raw = io.open(rp2, encoding="utf8").read(); hdr2 = "".join(l for l in raw.splitlines(True) if l.startswith("#"))
-        reg = yaml.safe_load(raw)
-        for p in reg.get("projects") or []:
-            if p.get("team") in renamed:
-                p["team"] = renamed[p["team"]]; p["label"] = "%s_%s" % (p["team"], p.get("code") or "?")
+            used.add(src.get("legacy_id", src.get("project")))
+        teams.append(e)
+    # 등록부와 맞춘다 — 프로젝트마다 팀 하나, 팀마다 프로젝트 하나
+    rp2 = os.path.join(TEAM, "registry.yaml")
+    raw = io.open(rp2, encoding="utf8").read(); hdr2 = "".join(l for l in raw.splitlines(True) if l.startswith("#"))
+    reg = yaml.safe_load(raw) or {}
+    relabel = {}
+    for p in reg.get("projects") or []:
+        tname = rename.get(p.get("team"), p.get("team"))
+        if tname and tname != p.get("team"):
+            oldlabel = p.get("label"); p["team"] = tname; p["label"] = "%s_%s" % (tname, p.get("code") or "?")
+            relabel[oldlabel] = (p["label"], p.get("path"))
+    by_team = {p.get("team"): p for p in (reg.get("projects") or []) if p.get("team")}
+    for e in teams:
+        p = by_team.get(e["name"])
+        if p:   # 등록부가 정본 — 팀 정의를 거기에 맞춘다
+            e.update(project=p.get("title") or e.get("project"), stage=p.get("stage") or e.get("stage"),
+                     code=p.get("code") or e.get("code"), label=p.get("label") or e.get("label"), legacy_id=p.get("id"))
+        elif e.get("project"):      # 등록부에 없는 배정은 풀어 둔다
+            e.update(project=None, stage="idle", code="미배정", label=e["name"]); e.pop("legacy_id", None)
+    dup = [n for n in set(p.get("team") for p in (reg.get("projects") or []) if p.get("team")) if n not in newnames]
+    if dup:
+        print("⚠ 등록부에 있는 팀 이름이 새 팀 목록에 없다: %s — 등록부의 team 칸을 손봐야 한다" % ", ".join(dup))
+    if relabel:
         io.open(rp2, "w", encoding="utf8").write(hdr2 + yaml.safe_dump(reg, allow_unicode=True, sort_keys=False, width=200))
-        print("팀 이름 변경에 따라 배정을 옮겼다: " + " · ".join("%s → %s" % kv for kv in renamed.items()))
-    moved = [n for n in olds if olds[n].get("project") and n not in {t["name"] for t in teams} and n not in renamed]
+        print("팀 이름 변경에 따라 배정을 옮겼다: " + " · ".join("%s → %s" % (a, b[0]) for a, b in relabel.items()))
+        # 프로젝트의 역할 문서·카드에 적힌 현재 팀 표기도 맞춘다 (과거 기록은 두고, 선언 줄만)
+        for oldlabel, (newlabel, path) in relabel.items():
+            if not path: continue
+            for fn in ("CLAUDE.md", "PROJECT.md"):
+                fp = os.path.join(ROOT, path, fn)
+                if os.path.exists(fp):
+                    txt = io.open(fp, encoding="utf8").read()
+                    t2 = txt.replace("당신은 %s 팀의 Captain" % oldlabel, "당신은 %s 팀의 Captain" % newlabel)
+                    t2 = re.sub(r"^(\|\s*팀\s*\|\s*)%s(\s*\|)" % re.escape(oldlabel), r"\g<1>%s\2" % newlabel, t2, flags=re.M)
+                    t2 = t2.replace("%s 팀장" % oldlabel, "%s 팀장" % newlabel)
+                    if t2 != txt: io.open(fp, "w", encoding="utf8").write(t2)
     rules = [r.replace("행성_약어", "팀이름_약어") for r in (old.get("규칙") or [])] or [
         "팀은 10개로 고정한다. 프로젝트가 끝나면 같은 팀이 다음 프로젝트를 받는다.",
         "팀 이름은 순서나 우선순위를 뜻하지 않는다.", "팀 호칭은 `팀이름_약어` 형태로 쓴다 (예: Terra_DEMO-SR)."]
     io.open(tp, "w", encoding="utf8").write("# 10개 고정 연구팀 — 이름 규칙: %s. 바꾸려면 lab.yaml 을 고치고 setup.py --apply\n" % cfg["teams"]["scheme"]
                                             + yaml.safe_dump({"규칙": rules, "teams": teams}, allow_unicode=True, sort_keys=False)); done.append("teams.yaml")
-    if moved:
-        print("⚠ 프로젝트가 배정돼 있던 팀 이름이 사라졌다: %s — 등록부(registry.yaml)의 team 칸을 손봐야 한다" % ", ".join(moved))
+    # 검증 — 프로젝트당 팀 하나, 팀당 프로젝트 하나
+    assigned = [e["legacy_id"] for e in teams if e.get("project")]
+    assert len(assigned) == len(set(assigned)), "한 연구가 두 팀에 배정됐다: " + str(assigned)
     rp = os.path.join(TEAM, "roster.md")
     if os.path.exists(rp):
         s = io.open(rp, encoding="utf8").read()
@@ -203,7 +234,8 @@ def apply(cfg, preview=True):
         print("  " + "\n  ".join((r.stdout or r.stderr).strip().splitlines()[-8:]))
         if "실패" in (r.stdout + r.stderr) or "CERTIFICATE" in (r.stdout + r.stderr):
             print("  → 병원망이면: python3 install.py 를 다시 돌려 인증서 부품(truststore)을 넣고, 맥에서 그래도 안 되면 zsh _team/scripts/fix_certificates.sh")
-    print("\n다음: 현황판을 엽니다 →  open _team/dashboard/dist/lab-dashboard.html")
+    import platform as _pf
+    print("\n다음: 현황판을 엽니다 →  " + (r"start _team\dashboard\dist\lab-dashboard.html" if _pf.system() == "Windows" else "open _team/dashboard/dist/lab-dashboard.html"))
 
 
 def main():

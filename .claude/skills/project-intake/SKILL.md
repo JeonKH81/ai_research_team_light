@@ -66,7 +66,7 @@ description: "연구 프로젝트를 팀에 등록하고 PROJECT.md 카드를 �
 ## 산출물
 
 - `projects/{id}_{slug}/PROJECT.md`
-- `projects/{id}_{slug}/CLAUDE.md` (5줄 이내 포인터)
+- `projects/{id}_{slug}/CLAUDE.md` (`projects/_template/CLAUDE.md` 서식 — '이 세션의 역할' 절을 자르지 않는다)
 - `projects/{id}_{slug}/_workspace/digests/*.json`
 - `_team/registry.yaml`, `_team/portfolio.md` 갱신
 

@@ -40,7 +40,7 @@ description: 이 연구실을 처음 설치했거나 운영 방식을 바꿀 때
 ## 반영
 
 1. `_team/lab.yaml` 에 적는다. 형식은 지금 파일 그대로(주석 유지). 검색식은 홑따옴표로 감싼다
-2. `python3 _team/scripts/setup.py --apply` — 팀 이름·로스터·자원 목록에 반영하고, **현황판을 다시 만들고, 문헌 수집을 미리보기로 한 번 돌린다**(파일은 만들지 않음). 수집이 실패하면 병원망일 가능성이 크다 → `python3 install.py  (인증서 부품을 넣는다 — 맥에서 그래도 안 되면 zsh _team/scripts/fix_certificates.sh)`
+2. `python3 _team/scripts/setup.py --apply` — 팀 이름·로스터·자원 목록에 반영하고, **현황판을 다시 만들고, 문헌 수집을 미리보기로 한 번 돌린다**(파일은 만들지 않음). 수집이 실패하면 병원망일 가능성이 크다 → `python3 install.py` 를 다시 돌리면 인증서 부품(truststore)이 들어간다. 맥에서 그래도 안 되면 `zsh _team/scripts/fix_certificates.sh`
 3. 결과를 한 화면으로 보여 준다: 연구실 이름 · 팀 이름 · 발굴 영역과 출처 · 랩미팅 · 수집 미리보기 건수
 4. `open _team/dashboard/dist/lab-dashboard.html        # 윈도우: start _team\dashboard\dist\lab-dashboard.html` 로 현황판을 열어 보라고 안내한다
 

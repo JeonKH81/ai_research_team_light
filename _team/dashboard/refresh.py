@@ -572,7 +572,7 @@ def main():
     print("갱신:", ", ".join(changed) or "변화 없음")
     r = subprocess.run([sys.executable, os.path.join(HERE, "build.py")],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
-    print(r.stdout.strip() or r.stderr.strip())
+    print(((r.stderr.strip() + "\n") if r.returncode != 0 and r.stderr.strip() else "") + r.stdout.strip())
     sys.exit(r.returncode)
 
 
