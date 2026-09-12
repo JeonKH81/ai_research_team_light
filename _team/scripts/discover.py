@@ -294,6 +294,8 @@ def report_failures():
     """못 읽은 원천을 사람이 읽을 수 있게 알린다."""
     import collections as _c
     by = _c.Counter(h for h, _, _ in FAILED)
+    if not FAILED:
+        return                                   # 실패가 없으면 경고도 없다
     print("⚠ 자료를 받아오지 못한 곳 %d건:" % len(FAILED))
     for host, n in by.most_common():
         why = next(m for h, t, m in FAILED if h == host)
