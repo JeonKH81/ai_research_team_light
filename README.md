@@ -100,9 +100,10 @@ Claude Code 창이 열리면 첫 대화에서 **`/setup`** (다섯 문항, 10분
 
 ## 필요한 것
 
-- **macOS 또는 Linux**, **Python 3.9 이상** (+ `pyyaml` — `install.py` 가 넣습니다)
+- **macOS · Windows · Linux** — 윈도우는 PowerShell([설치 문서](docs/설치.md#윈도우에서는))
+- **Git**, **Python 3.9 이상** (+ `pyyaml`·`truststore` — `install.py` 가 넣습니다)
 - **Claude Code** + Claude 구독 로그인 (별도 열쇠 불필요)
-- **인터넷** — 문헌 수집에만 씁니다. 받아오는 곳(PubMed·medRxiv·arXiv·ClinicalTrials.gov)은 등록도 열쇠도 필요 없습니다
+- **인터넷** — Claude Code 대화와 문헌 수집에 필요합니다. 받아오는 곳(PubMed·medRxiv·arXiv·ClinicalTrials.gov)은 등록도 열쇠도 필요 없습니다
 
 ## 라이선스
 

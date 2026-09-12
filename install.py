@@ -27,7 +27,7 @@ if sys.version_info < (3, 9):
 
 
 def pip(*args):
-    return subprocess.run([PY, "-m", "pip", *args], capture_output=True, text=True)
+    return subprocess.run([PY, "-m", "pip", *args], capture_output=True, text=True, encoding="utf-8", errors="replace")
 
 
 def have(mod):
@@ -36,22 +36,32 @@ def have(mod):
 
 if not have("yaml") or (sys.version_info >= (3, 10) and not have("truststore")):
     print("필요한 부품을 넣습니다 (pyyaml · truststore)…", flush=True)
-    r = pip("install", "--user", "-r", "requirements.txt")
+    in_venv = sys.prefix != getattr(sys, "base_prefix", sys.prefix)
+    r = pip("install", *([] if in_venv else ["--user"]), "-r", "requirements.txt")
     if r.returncode != 0 and "externally-managed" in (r.stdout + r.stderr):
         print("  사용자 설치가 막혀 있어 연구실 전용 공간(.venv)에 넣습니다", flush=True)
         subprocess.run([PY, "-m", "venv", ".venv"], check=True)
         vpy = os.path.join(".venv", "Scripts" if WIN else "bin", "python.exe" if WIN else "python3")
         subprocess.run([vpy, "-m", "pip", "install", "-q", "-r", "requirements.txt"], check=True)
         PY = vpy
-        print("  앞으로 이 폴더에서는 먼저:  " + (r".venv\Scripts\activate" if WIN else "source .venv/bin/activate"), flush=True)
+        print("  앞으로 이 폴더에서 여는 모든 창(팀장 창·발굴 화면 창 포함)에서 먼저:  " + (r".\.venv\Scripts\Activate.ps1" if WIN else "source .venv/bin/activate"), flush=True)
+        print("  (활성화가 막혀 있으면 python 대신  " + (r".\.venv\Scripts\python.exe" if WIN else ".venv/bin/python3") + "  를 그대로 쓰면 된다)", flush=True)
     elif r.returncode != 0:
         print("  ✗ 설치 실패:\n" + (r.stderr or r.stdout).strip()[-400:], flush=True)
         sys.exit(1)
 
-r = subprocess.run([PY, os.path.join("_team", "dashboard", "refresh.py")], capture_output=True, text=True)
-print("첫 현황판을 만들었습니다." if r.returncode == 0 else "✗ 현황판을 만들지 못했습니다:\n" + (r.stderr or r.stdout).strip()[-300:], flush=True)
+r = subprocess.run([PY, os.path.join("_team", "dashboard", "refresh.py")], capture_output=True, text=True, encoding="utf-8", errors="replace")
+if r.returncode != 0:
+    print("✗ 현황판을 만들지 못했습니다:\n" + (r.stderr or r.stdout).strip()[-300:], flush=True)
+    sys.exit(1)
+print("첫 현황판을 만들었습니다.", flush=True)
 print(flush=True)
-sys.stdout.flush(); subprocess.run([PY, os.path.join("_team", "scripts", "check.py")]); sys.stdout.flush()
+sys.stdout.flush(); rc = subprocess.run([PY, os.path.join("_team", "scripts", "check.py")]).returncode; sys.stdout.flush()
 print(flush=True)
+if rc == 2:      # 설정 문답만 남음 — 설치는 성공
+    print("설치 완료. 남은 것은 설정 문답 하나입니다.", flush=True)
+elif rc != 0:
+    print("✗ 설치가 끝나지 않았습니다. 위 ✗ 항목을 고친 뒤  python3 install.py  를 다시 돌리세요.", flush=True)
+    sys.exit(1)
 print("다음:  claude   ← 이 폴더에서 열면 그 창이 총괄팀장입니다. 첫 대화에서  /setup  이라고 치세요.", flush=True)
 print("현황판 열기:  " + ("start _team\\dashboard\\dist\\lab-dashboard.html" if WIN else "open _team/dashboard/dist/lab-dashboard.html"), flush=True)

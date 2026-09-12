@@ -39,3 +39,7 @@ methodologist에게 설계 근거 문헌을, writer에게 서론·고찰용 근�
 - **수신:** 팀장의 검색 지시, writer/methodologist의 추가 근거 요청
 - **발신:** 팀장에게 완료 보고, 요청자에게 산출물 경로 전달
 - 인용 검증 결과가 의심스러우면 adversarial-reviewer에게 교차 확인을 요청한다.
+
+## 도구가 없을 때 (경량판)
+
+위에 적힌 스킬 이름(`search-lit`·`verify-refs`·`ma-scout`·`find-cohort-gap`·`write-protocol`·`calc-sample-size`·`define-variables` 등)은 **별도 설치하는 도구 묶음**의 것이다. `/help` 에 없으면 **같은 일을 직접 한다** — 문헌 검색은 PubMed 검색식을 만들어 `python3 _team/scripts/discover.py --days 30 --topic <key>` 또는 사용자에게 검색 실행을 부탁하고, 인용 확인은 PMID 를 하나씩 대조하며, 표본수는 표준 공식으로 계산 과정을 보이고, 프로토콜은 `projects/_template/` 의 서식을 따른다. **도구가 없다고 그 단계를 건너뛰지 않으며, 없었다는 사실을 산출물에 적는다.**

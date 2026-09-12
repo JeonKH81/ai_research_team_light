@@ -40,3 +40,7 @@ lit-scout의 근거를 입력으로 받고, data-analyst에게 SAP를 넘긴다.
 - **수신:** 팀장의 설계 지시, data-analyst의 분석 가능성 질의
 - **발신:** data-analyst에게 SAP 전달, lit-scout에게 근거 문헌 요청, 팀장에게 완료 보고
 - 설계 변경이 필요하다고 판단되면 스스로 바꾸지 말고 팀장에게 사유와 함께 올린다.
+
+## 도구가 없을 때 (경량판)
+
+위에 적힌 스킬 이름(`search-lit`·`verify-refs`·`ma-scout`·`find-cohort-gap`·`write-protocol`·`calc-sample-size`·`define-variables` 등)은 **별도 설치하는 도구 묶음**의 것이다. `/help` 에 없으면 **같은 일을 직접 한다** — 문헌 검색은 PubMed 검색식을 만들어 `python3 _team/scripts/discover.py --days 30 --topic <key>` 또는 사용자에게 검색 실행을 부탁하고, 인용 확인은 PMID 를 하나씩 대조하며, 표본수는 표준 공식으로 계산 과정을 보이고, 프로토콜은 `projects/_template/` 의 서식을 따른다. **도구가 없다고 그 단계를 건너뛰지 않으며, 없었다는 사실을 산출물에 적는다.**

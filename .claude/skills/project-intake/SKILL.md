@@ -17,7 +17,7 @@ description: "연구 프로젝트를 팀에 등록하고 PROJECT.md 카드를 �
 
 | 상황 | 경로 |
 |------|------|
-| 폴더도 세션 기록도 없는 새 아이디어 | Step 3(대화로 카드 작성)만 수행 |
+| 폴더도 세션 기록도 없는 새 아이디어 | Step 3(대화로 카드 작성) → 3-1(폴더와 팀장 임명 문서) → 4(등록·팀 배정·화면 확인) |
 | 기존 작업 폴더가 있음 (이전 대상) | Step 2 → 3 → 4 전부 |
 | 이미 팀에 있으나 카드가 낡음 | Step 2(로그만) → 3(갱신) |
 
@@ -30,21 +30,24 @@ description: "연구 프로젝트를 팀에 등록하고 PROJECT.md 카드를 �
 
 ### Step 3: 카드 작성
 
-`assets/PROJECT_TEMPLATE.md`를 복사해 채운다. 분량은 A4 한 장 이내로 유지한다 — 팀장이 매 실행 시작에 읽는 문서이므로 길면 핵심이 묻힌다.
+`projects/_template/PROJECT.md` 를 복사해 채운다(서식은 이것 하나다). 분량은 A4 한 장 이내로 유지한다 — 팀장이 매 실행 시작에 읽는 문서이므로 길면 핵심이 묻힌다.
 
 채울 수 없는 항목은 지우지 말고 `[확인 필요]`로 남긴다. 팀장이 그 항목을 발견하면 총괄팀장을 통해 사용자에게 질문한다.
 
 ### Step 3-1: 프로젝트 폴더 CLAUDE.md 생성
 
-`assets/PROJECT_CLAUDE_TEMPLATE.md`를 복사해 `projects/{id}_{slug}/CLAUDE.md`를 만든다. **5줄 이내로 유지한다.**
+`projects/_template/CLAUDE.md` 를 복사해 `projects/{id}_{slug}/CLAUDE.md` 를 만들고 `{{…}}` 자리를 채운다. **'이 세션의 역할' 절이 그 폴더에서 연 창을 팀장으로 만든다 — 빠뜨리면 팀장 창이 자기를 모른다.** 카드 서식은 `projects/_template/PROJECT.md`.
 
 이유: 팀장이 그 폴더의 파일을 읽는 순간 이 파일이 자동으로 컨텍스트에 들어온다. 프로젝트 카드를 먼저 읽으라는 지시와, 임의로 바꾸면 안 되는 범위 결정(PI 승인 사항 등)을 여기 둔다. 내용을 카드와 중복시키지 않는다 — 카드로 가는 포인터와 불변 규칙만 담는다.
 
 ### Step 4: 등록
 
-1. `_team/registry.yaml`에 항목 추가 (id, slug, title, type, stage, priority, path, blockers, next, updated)
-2. `_team/portfolio.md`의 표에 한 줄 추가
-3. 신규 등록·이전 사실을 `_team/decisions.md`에 기록
+1. **팀 배정** — `_team/teams.yaml` 에서 `project: null` 인 팀 하나를 고른다(사용자에게 묻거나 첫 미배정 팀). 약어(`code`)를 정한다 — 영문 대문자·숫자·하이픈 3~10자
+2. `_team/registry.yaml` 에 항목 추가: id, slug, title, type, stage, priority, path, **team, code, label(`팀이름_약어`)**, blockers, next, updated, open_items(빈 목록)
+3. `_team/teams.yaml` 의 그 팀에 project(제목)·code·label·stage·legacy_id(id) 를 채운다 — **등록부와 팀 정의 둘 다 고쳐야 현황판에 새 팀 줄이 뜬다**
+4. `python3 _team/scripts/portfolio.py --write` 로 포트폴리오 표 갱신, `python3 _team/dashboard/refresh.py` 로 현황판 갱신
+5. 신규 등록 사실을 `_team/decisions.md` 에 한 줄 기록
+6. **화면으로 확인** — 현황판에 `팀이름_약어` 줄이 진행 중으로 보이면 등록이 끝난 것이다
 
 ### Step 5(이전 시): 폴더 이동 — 사용자 승인 필수
 

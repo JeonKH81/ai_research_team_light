@@ -52,3 +52,7 @@ lit-scout의 수집 결과를 입력으로 받고, 통과한 가설을 methodolo
 - **수신:** ideation-lead의 검증 지시, lit-scout의 문헌 결과
 - **발신:** lit-scout에게 추가 검색 요청, ideation-lead에게 판정 보고
 - 판정을 뒤집을 근거가 나오면 즉시 ideation-lead에게 알린다. 랩미팅에서 뒤집히는 것보다 먼저 고치는 편이 싸다.
+
+## 도구가 없을 때 (경량판)
+
+위에 적힌 스킬 이름(`search-lit`·`verify-refs`·`ma-scout`·`find-cohort-gap`·`write-protocol`·`calc-sample-size`·`define-variables` 등)은 **별도 설치하는 도구 묶음**의 것이다. `/help` 에 없으면 **같은 일을 직접 한다** — 문헌 검색은 PubMed 검색식을 만들어 `python3 _team/scripts/discover.py --days 30 --topic <key>` 또는 사용자에게 검색 실행을 부탁하고, 인용 확인은 PMID 를 하나씩 대조하며, 표본수는 표준 공식으로 계산 과정을 보이고, 프로토콜은 `projects/_template/` 의 서식을 따른다. **도구가 없다고 그 단계를 건너뛰지 않으며, 없었다는 사실을 산출물에 적는다.**

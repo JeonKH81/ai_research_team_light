@@ -89,11 +89,17 @@ def make_proposal(today, cid, title, note):
 
 
 def regenerate():
+    """화면을 다시 만든다. 실패하면 이유를 화면(터미널)에 찍는다 — 조용히 넘어가면 옛 화면이 남는다."""
     try:
-        subprocess.run(["python3", os.path.join(SCRIPTS, "ideation_dashboard.py")],
-                       capture_output=True, timeout=60)
-    except Exception:
-        pass
+        r = subprocess.run([_sys.executable, os.path.join(SCRIPTS, "ideation_dashboard.py")],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
+        if r.returncode != 0:
+            print("✗ 발굴 현황판을 다시 만들지 못했다:\n" + (r.stderr or r.stdout).strip()[-400:], flush=True)
+            return False
+        return True
+    except Exception as e:
+        print("✗ 발굴 현황판을 다시 만들지 못했다: %s\n   → 터미널에서 python3 _team/scripts/ideation_dashboard.py 를 직접 돌려 보라" % e, flush=True)
+        return False
 
 
 def decide(cid, decision, note):

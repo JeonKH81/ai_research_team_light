@@ -148,7 +148,25 @@ def apply(cfg, preview=True):
             keep = dict(keep); keep["ko"] = t["ko"]; keep["slug"] = t["name"].lower(); teams.append(keep)
         else:
             teams.append({"name": t["name"], "ko": t["ko"], "slug": t["name"].lower(), "project": None, "stage": "idle", "code": "미배정", "label": t["name"]})
-    moved = [n for n in olds if olds[n].get("project") and n not in {t["name"] for t in teams}]
+    # 이름이 바뀐 자리: 옛 i번째 팀에 프로젝트가 있으면 새 i번째 이름으로 옮긴다 (등록부도 함께)
+    oldnames = [t["name"] for t in (old.get("teams") or [])]
+    renamed = {}
+    for i, t in enumerate(teams):
+        if i < len(oldnames) and oldnames[i] != t["name"] and olds[oldnames[i]].get("project"):
+            src = olds[oldnames[i]]
+            t.update(project=src.get("project"), stage=src.get("stage"), code=src.get("code"),
+                     label="%s_%s" % (t["name"], src.get("code") or "?"), legacy_id=src.get("legacy_id"))
+            renamed[oldnames[i]] = t["name"]
+    if renamed:
+        rp2 = os.path.join(TEAM, "registry.yaml")
+        raw = io.open(rp2, encoding="utf8").read(); hdr2 = "".join(l for l in raw.splitlines(True) if l.startswith("#"))
+        reg = yaml.safe_load(raw)
+        for p in reg.get("projects") or []:
+            if p.get("team") in renamed:
+                p["team"] = renamed[p["team"]]; p["label"] = "%s_%s" % (p["team"], p.get("code") or "?")
+        io.open(rp2, "w", encoding="utf8").write(hdr2 + yaml.safe_dump(reg, allow_unicode=True, sort_keys=False, width=200))
+        print("팀 이름 변경에 따라 배정을 옮겼다: " + " · ".join("%s → %s" % kv for kv in renamed.items()))
+    moved = [n for n in olds if olds[n].get("project") and n not in {t["name"] for t in teams} and n not in renamed]
     rules = [r.replace("행성_약어", "팀이름_약어") for r in (old.get("규칙") or [])] or [
         "팀은 10개로 고정한다. 프로젝트가 끝나면 같은 팀이 다음 프로젝트를 받는다.",
         "팀 이름은 순서나 우선순위를 뜻하지 않는다.", "팀 호칭은 `팀이름_약어` 형태로 쓴다 (예: Terra_DEMO-SR)."]
@@ -177,11 +195,11 @@ def apply(cfg, preview=True):
     tps = cfg["ideation"].get("topics") or []
     print("발굴팀  : %s" % (("영역 %d개 — " % len(tps) + " · ".join("%s(%s)" % (t.get("label"), ",".join(t.get("sources") or [])) for t in tps)) if cfg["ideation"].get("enabled", True) and tps else ("본보기 영역으로" if cfg["ideation"].get("enabled", True) else "두지 않음")))
     # 현황판 다시 만들기
-    r = subprocess.run([sys.executable, os.path.join(TEAM, "dashboard", "refresh.py")], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, os.path.join(TEAM, "dashboard", "refresh.py")], capture_output=True, text=True, encoding="utf-8", errors="replace")
     print("현황판  : %s" % ((r.stdout.strip().splitlines() or ["?"])[-1] if r.returncode == 0 else "실패 — " + r.stderr.strip()[-200:]))
     if preview and cfg["ideation"].get("enabled", True) and tps:
         print("\n문헌 수집 미리보기 (최근 7일, 파일은 만들지 않음) — 인터넷이 막힌 곳이면 여기서 실패가 뜹니다:")
-        r = subprocess.run([sys.executable, os.path.join(HERE, "discover.py"), "--days", "7", "--dry"], capture_output=True, text=True, timeout=180)
+        r = subprocess.run([sys.executable, os.path.join(HERE, "discover.py"), "--days", "7", "--dry"], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         print("  " + "\n  ".join((r.stdout or r.stderr).strip().splitlines()[-8:]))
         if "실패" in (r.stdout + r.stderr) or "CERTIFICATE" in (r.stdout + r.stderr):
             print("  → 병원망이면: python3 install.py 를 다시 돌려 인증서 부품(truststore)을 넣고, 맥에서 그래도 안 되면 zsh _team/scripts/fix_certificates.sh")

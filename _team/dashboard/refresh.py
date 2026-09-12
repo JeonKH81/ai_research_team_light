@@ -127,7 +127,7 @@ def lab_name():
 
 def block_stamp(reg, rows, now):
     return ("      %s 기준<br>\n      %s<br>\n"
-            "      1인 연구실 · 팀 10 · 연구원 11" % (now.strftime("%Y-%m-%d %H:%M"), lab_name()))
+            "      1인 연구실 · 팀 10 · 연구원 9종" % (now.strftime("%Y-%m-%d %H:%M"), lab_name()))
 
 
 def _card_sections(path):
@@ -571,7 +571,7 @@ def main():
     open(SRC, "w", encoding="utf8").write(html)
     print("갱신:", ", ".join(changed) or "변화 없음")
     r = subprocess.run([sys.executable, os.path.join(HERE, "build.py")],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
     print(r.stdout.strip() or r.stderr.strip())
     sys.exit(r.returncode)
 

@@ -106,7 +106,7 @@ Agent(subagent_type: "general-purpose", name: "cap-{팀라벨}", model: "opus",
 
 ### Phase 1: 접수 (총괄팀장)
 
-총괄팀장 에이전트를 `Agent(name: "총괄팀장", model: "opus")`로 소환하거나, 이미 실행 중이면 `SendMessage`로 이어서 지시한다.
+**총괄팀장은 소환하지 않는다 — 지금 이 창이 총괄팀장이다.** 아래는 이 창이 직접 한다.
 
 총괄팀장이 하는 일:
 1. 요청을 "프로젝트 / 단계 / 원하는 산출물"로 번역
@@ -119,14 +119,10 @@ Agent(subagent_type: "general-purpose", name: "cap-{팀라벨}", model: "opus",
 총괄팀장이 하는 일:
 1. `PROJECT.md`를 읽고 이번 실행의 목표 마일스톤을 확정
 2. 우선순위·중복 점검 — 다른 프로젝트의 기존 산출물로 대체 가능한 작업이 있으면 재사용을 지시
-3. 팀장을 소환하며 **카드 경로 + 이번 목표**를 프롬프트에 주입
-   ```
-   Agent(subagent_type: "general-purpose", name: "lead-P01", model: "opus",
-         prompt: ".claude/agents/팀장.md의 역할을 수행한다.
-                  담당 프로젝트 카드: projects/P01_demo-ecg-sr/PROJECT.md
-                  이번 실행 목표: {마일스톤}")
-   ```
-4. 프로젝트 2개 이상을 동시에 굴려야 하면 각 팀장을 `run_in_background: true`로 병렬 소환
+3. **팀장도 소환하지 않는다.** 두 길 중 하나다:
+   - 사용자가 그 프로젝트 폴더에서 창을 열면 그 창이 팀장이 되어 실행한다(`_team/roles/팀장.md`). 총괄은 카드에 이번 목표를 적어 넘긴다
+   - 총괄 창에서 바로 진행해야 하면 총괄이 **연구원(Scout·Planner·Analyst·Writer·Critic·Archivist)을 직접 부른다** — 프롬프트에 카드의 핵심 맥락(연구 질문·설계·자료 위치·이번 목표)을 넣는다
+4. 프로젝트 여럿을 동시에 굴려야 하면 프로젝트마다 팀장 창을 따로 연다. 한 창이 여러 팀의 정본을 고치지 않는다
 
 ### Phase 3: 실행 (팀장 → 연구원)
 

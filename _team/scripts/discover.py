@@ -68,13 +68,16 @@ def _topics_from_config():
         cfg = labconfig.load()
         out = OrderedDict()
         for t in cfg["ideation"].get("topics") or []:
-            if not t.get("key") or not (t.get("pubmed") or t.get("medrxiv") or t.get("arxiv")):
+            if not t.get("key") or not (t.get("pubmed") or t.get("medrxiv") or t.get("arxiv") or t.get("trials")):
                 continue
             d = {"label": t.get("label") or t["key"]}
             if t.get("pubmed"): d["pubmed"] = t["pubmed"]
             if t.get("medrxiv"): d["medrxiv"] = list(t["medrxiv"])
             if t.get("arxiv"): d["arxiv"] = t["arxiv"]
+            if t.get("trials"): d["trials"] = t["trials"]
             out[t["key"]] = d
+        if not out and (cfg["ideation"].get("topics") or []):
+            print("⚠ lab.yaml 의 관심 영역을 하나도 읽지 못했다 (검색식이 비어 있음) — 본보기 영역으로 돈다. /setup 으로 다시 정하라", file=sys.stderr)
         return out
     except Exception:
         return OrderedDict()
