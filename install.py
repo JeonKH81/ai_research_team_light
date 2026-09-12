@@ -18,11 +18,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
 PY = sys.executable
 WIN = platform.system() == "Windows"
-print("연구실 폴더: " + HERE)
-print("운영체제   : " + platform.system() + "  ·  Python " + platform.python_version())
+print("연구실 폴더: " + HERE, flush=True)
+print("운영체제   : " + platform.system() + "  ·  Python " + platform.python_version(), flush=True)
 
 if sys.version_info < (3, 9):
-    print("✗ Python 3.9 이상이 필요합니다. https://www.python.org/downloads/ 에서 설치한 뒤 다시 실행하세요.")
+    print("✗ Python 3.9 이상이 필요합니다. https://www.python.org/downloads/ 에서 설치한 뒤 다시 실행하세요.", flush=True)
     sys.exit(1)
 
 
@@ -35,23 +35,23 @@ def have(mod):
 
 
 if not have("yaml") or (sys.version_info >= (3, 10) and not have("truststore")):
-    print("필요한 부품을 넣습니다 (pyyaml · truststore)…")
+    print("필요한 부품을 넣습니다 (pyyaml · truststore)…", flush=True)
     r = pip("install", "--user", "-r", "requirements.txt")
     if r.returncode != 0 and "externally-managed" in (r.stdout + r.stderr):
-        print("  사용자 설치가 막혀 있어 연구실 전용 공간(.venv)에 넣습니다")
+        print("  사용자 설치가 막혀 있어 연구실 전용 공간(.venv)에 넣습니다", flush=True)
         subprocess.run([PY, "-m", "venv", ".venv"], check=True)
         vpy = os.path.join(".venv", "Scripts" if WIN else "bin", "python.exe" if WIN else "python3")
         subprocess.run([vpy, "-m", "pip", "install", "-q", "-r", "requirements.txt"], check=True)
         PY = vpy
-        print("  앞으로 이 폴더에서는 먼저:  " + (r".venv\Scripts\activate" if WIN else "source .venv/bin/activate"))
+        print("  앞으로 이 폴더에서는 먼저:  " + (r".venv\Scripts\activate" if WIN else "source .venv/bin/activate"), flush=True)
     elif r.returncode != 0:
-        print("  ✗ 설치 실패:\n" + (r.stderr or r.stdout).strip()[-400:])
+        print("  ✗ 설치 실패:\n" + (r.stderr or r.stdout).strip()[-400:], flush=True)
         sys.exit(1)
 
 r = subprocess.run([PY, os.path.join("_team", "dashboard", "refresh.py")], capture_output=True, text=True)
-print("첫 현황판을 만들었습니다." if r.returncode == 0 else "✗ 현황판을 만들지 못했습니다:\n" + (r.stderr or r.stdout).strip()[-300:])
-print()
-subprocess.run([PY, os.path.join("_team", "scripts", "check.py")])
-print()
-print("다음:  claude   ← 이 폴더에서 열면 그 창이 총괄팀장입니다. 첫 대화에서  /setup  이라고 치세요.")
-print("현황판 열기:  " + ("start _team\\dashboard\\dist\\lab-dashboard.html" if WIN else "open _team/dashboard/dist/lab-dashboard.html"))
+print("첫 현황판을 만들었습니다." if r.returncode == 0 else "✗ 현황판을 만들지 못했습니다:\n" + (r.stderr or r.stdout).strip()[-300:], flush=True)
+print(, flush=True)
+sys.stdout.flush(); subprocess.run([PY, os.path.join("_team", "scripts", "check.py")]); sys.stdout.flush()
+print(, flush=True)
+print("다음:  claude   ← 이 폴더에서 열면 그 창이 총괄팀장입니다. 첫 대화에서  /setup  이라고 치세요.", flush=True)
+print("현황판 열기:  " + ("start _team\\dashboard\\dist\\lab-dashboard.html" if WIN else "open _team/dashboard/dist/lab-dashboard.html"), flush=True)
