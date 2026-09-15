@@ -30,7 +30,8 @@ try:
 except ImportError:
     line(False, "pyyaml 없음", "python3 -m pip install --user -r requirements.txt")
 line(bool(shutil.which("claude")), "Claude Code (claude 명령)", "Claude Code 를 설치하고 로그인하세요")
-line(not os.environ.get("ANTHROPIC_API_KEY"), "ANTHROPIC_API_KEY 없음 (있으면 claude.ai 로그인이 꺼진다)", "맥·리눅스: unset ANTHROPIC_API_KEY   윈도우 PowerShell: Remove-Item Env:ANTHROPIC_API_KEY")
+_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
+line(not _key, "ANTHROPIC_API_KEY 가 설정돼 있음 — claude.ai 로그인이 꺼진다" if _key else "ANTHROPIC_API_KEY 없음 (claude.ai 로그인 사용)", "맥·리눅스: unset ANTHROPIC_API_KEY   윈도우 PowerShell: Remove-Item Env:ANTHROPIC_API_KEY")
 for rel in ("_team/lab.yaml", "_team/registry.yaml", "_team/teams.yaml", "projects/_template/PROJECT.md", "_team/dashboard/source.html"):
     line(os.path.exists(os.path.join(ROOT, rel)), rel, "저장소를 다시 내려받으세요")
 try:
