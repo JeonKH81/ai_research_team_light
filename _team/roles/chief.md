@@ -66,5 +66,5 @@
 
 ## 같이 읽을 것
 
-`_team/roles/팀장.md` — 프로젝트 폴더에서 열린 세션이 맡는 자리
+`_team/roles/captain.md` — 프로젝트 폴더에서 열린 세션이 맡는 자리
 `_team/roster.md` — 연구원 직관명과 공식명 대응표

@@ -56,4 +56,4 @@ python3 ../../_team/scripts/report.py status <팀이름> --note "무엇을 했�
 
 ## 같이 읽을 것
 
-`_team/roles/총괄팀장.md` · `_team/roster.md` · 각 프로젝트의 `CLAUDE.md`
+`_team/roles/chief.md` · `_team/roster.md` · 각 프로젝트의 `CLAUDE.md`

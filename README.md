@@ -58,7 +58,7 @@ flowchart TB
 
 ## 설치 없이 앱에서 해 보기 (60분 핸즈온)
 
-Claude 앱만 있으면 됩니다 — [프롬프트 카드 9장](docs/앱판_프롬프트카드.md)을 순서대로 붙여 넣으면 총괄팀장 임명 → 연구 등록 → **연구원 셋을 내가 정의** → 팀장 창 → Scout·Critic → 현황판 → 발굴 판정까지 한 바퀴 돕니다. 종이 [워크시트](docs/워크시트.md)를 먼저 채우면 빠릅니다.
+Claude 앱만 있으면 됩니다 — [프롬프트 카드 9장](docs/app-prompt-cards.md)을 순서대로 붙여 넣으면 총괄팀장 임명 → 연구 등록 → **연구원 셋을 내가 정의** → 팀장 창 → Scout·Critic → 현황판 → 발굴 판정까지 한 바퀴 돕니다. 종이 [워크시트](docs/worksheet.md)를 먼저 채우면 빠릅니다.
 
 ## 30분 시작하기
 
@@ -70,7 +70,7 @@ claude                                             # 이 창이 총괄팀장입�
 ```
 
 Claude Code 창이 열리면 첫 대화에서 **`/setup`** (다섯 문항, 10분) → 이어서 **`/hands-on`** 이라고 칩니다.
-그다음부터는 총괄팀장이 여덟 단계를 하나씩 끌고 갑니다. 윈도우는 `python install.py` — 나머지는 같습니다([설치 문서](docs/설치.md#윈도우에서는)).
+그다음부터는 총괄팀장이 여덟 단계를 하나씩 끌고 갑니다. 윈도우는 `python install.py` — 나머지는 같습니다([설치 문서](docs/install.md#윈도우에서는)).
 
 본보기 연구 한 건(`projects/P01_demo-ecg-sr` — `Terra_DEMO-SR`, 지어낸 체계적 고찰)이 들어 있어
 설치 직후에도 화면이 채워져 보입니다. 한 바퀴 둘러본 뒤 지우고 자기 연구를 넣으면 됩니다.
@@ -96,15 +96,15 @@ Claude Code 창이 열리면 첫 대화에서 **`/setup`** (다섯 문항, 10분
 
 | 문서 | 내용 |
 |---|---|
-| [docs/설치.md](docs/설치.md) | 사전 준비, 내려받기, 설치 확인 읽는 법, `/setup` 다섯 문항, 문제가 생기면 |
-| [docs/핸즈온.md](docs/핸즈온.md) | 실습 대본 — 여덟 단계를 화면에서 보는 순서대로 |
-| [docs/강사노트.md](docs/강사노트.md) | 진행자용 — 시간표, 막히기 쉬운 곳, 참석자에게 던질 질문 |
+| [docs/install.md](docs/install.md) | 사전 준비, 내려받기, 설치 확인 읽는 법, `/setup` 다섯 문항, 문제가 생기면 |
+| [docs/handson.md](docs/handson.md) | 실습 대본 — 여덟 단계를 화면에서 보는 순서대로 |
+| [docs/instructor-notes.md](docs/instructor-notes.md) | 진행자용 — 시간표, 막히기 쉬운 곳, 참석자에게 던질 질문 |
 
 연구실 자체의 운영 규칙은 최상위 [`CLAUDE.md`](CLAUDE.md) 에 있습니다. 대화창은 이 파일을 먼저 읽습니다.
 
 ## 필요한 것
 
-- **macOS · Windows · Linux** — 윈도우는 PowerShell([설치 문서](docs/설치.md#윈도우에서는))
+- **macOS · Windows · Linux** — 윈도우는 PowerShell([설치 문서](docs/install.md#윈도우에서는))
 - **Git**, **Python 3.9 이상** (+ `pyyaml`·`truststore` — `install.py` 가 넣습니다)
 - **Claude Code** + Claude 구독 로그인 (별도 열쇠 불필요)
 - **인터넷** — Claude Code 대화와 문헌 수집에 필요합니다. 받아오는 곳(PubMed·medRxiv·arXiv·ClinicalTrials.gov)은 등록도 열쇠도 필요 없습니다

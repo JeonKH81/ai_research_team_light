@@ -121,7 +121,7 @@ open _team/dashboard/dist/lab-dashboard.html        # 윈도우: start _team\das
 > Linux 에서는 `open` 대신 `xdg-open` 을 쓰거나, 파일을 브라우저로 직접 열면 됩니다.
 
 여기까지 되면 설치는 끝입니다. 총괄팀장 창에서 **`/hands-on`** 이라고 치고 실습을 시작하세요
-(순서는 [핸즈온 대본](핸즈온.md)에 그대로 있습니다).
+(순서는 [핸즈온 대본](handson.md)에 그대로 있습니다).
 
 ---
 
