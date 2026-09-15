@@ -70,7 +70,7 @@ python3 ../../_team/scripts/report.py status <팀이름> --note "Scout 이 검�
 python3 _team/scripts/discover.py --days 7
 ```
 설정한 관심 영역에서 최근 일주일 문헌이 `_team/ideas/_incoming/` 에 모인다(인터넷이 막히면 `fix_certificates.sh`).
-그다음 `/topic-discovery` 로 그 수집분에서 **연구 질문 후보 카드**를 만든다(Explorer 가 Inventor·Surveyor 를 부른다. 3~5분).
+그다음 `/topic-discovery` 로 그 수집분에서 **연구 질문 연구 질문 후보**를 만든다(Explorer 가 Inventor·Surveyor 를 부른다. 3~5분).
 프로젝트 문서가 생기면 발굴 현황판을 연다 — 새 터미널에서 `python3 _team/scripts/ideas_server.py` → http://localhost:8790.
 화면에서 후보 하나를 **보류**로 눌러 본다 → 프로젝트 문서에 판정이 적히는 것을 보여 준다. **세 번째 "아" 지점.**
 

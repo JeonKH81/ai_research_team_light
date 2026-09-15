@@ -180,7 +180,7 @@ python3 _team/scripts/discover.py --days 7
 
 > /topic-discovery
 
-**보여야 하는 것** 모아 온 문헌에서 **연구 질문 후보 카드**가 `_team/ideas/` 에 만들어집니다(3~5분).
+**보여야 하는 것** 모아 온 문헌에서 **연구 질문 연구 질문 후보**가 `_team/ideas/` 에 만들어집니다(3~5분).
 Explorer 가 Inventor 와 Surveyor 를 불러 아이디어를 내고 연구 공백을 검증합니다.
 
 그다음 **또 하나의 터미널**에서 발굴 현황판을 엽니다:
@@ -219,7 +219,7 @@ python3 _team/scripts/ideas_server.py      # http://localhost:8790
 ## 집에 가서 할 일 셋
 
 1. **본보기를 지웁니다.** 총괄 창에 "본보기 연구 `Terra_DEMO-SR` 을 정리해 줘"라고 하면 폴더·등록부·팀 배정(`teams.yaml`)·본보기 아이디어 프로젝트 문서를 함께 정리합니다. 손으로 하려면 셋을 다 해야 합니다 — 폴더 삭제, `_team/registry.yaml` 항목 제거, `_team/teams.yaml` 에서 Terra 를 미배정으로. 끝나면 `python3 _team/scripts/check.py` 로 확인합니다.
-   `_team/ideas/` 의 `I01`~`I04` 본보기 후보 카드도 같이 지웁니다.
+   `_team/ideas/` 의 `I01`~`I04` 본보기 연구 질문 후보도 같이 지웁니다.
 2. **`_team/resources.md` 를 채웁니다.** 이 연구실이 실제로 쓸 수 있는 자료와 할 수 있는 일을 적는 파일입니다.
    여기가 비어 있으면 발굴팀이 손댈 수 없는 자료를 전제한 후보를 냅니다.
 3. **자기 연구를 등록합니다.** 총괄팀장 창에서 `/project-intake` — 지금 끌고 있는 연구부터 하나씩.
