@@ -23,11 +23,11 @@ description: 핸즈온 참석자를 처음부터 끝까지 단계별로 끌고 �
 ## 2. 본보기 현황판 둘러보기
 
 `open _team/dashboard/dist/lab-dashboard.html        # 윈도우: start _team\dashboard\dist\lab-dashboard.html`. 보여야 하는 것: 팀 10줄 중 `Terra_DEMO-SR` 하나가 진행 중, 나머지 미배정.
-설명 한 줄: *이 화면은 손으로 그리지 않습니다. 등록부와 카드에서 매번 다시 만들어집니다.* 팀 줄을 눌러 상세를 보여 준다.
+설명 한 줄: *이 화면은 손으로 그리지 않습니다. 등록부와 프로젝트 문서에서 매번 다시 만들어집니다.* 팀 줄을 눌러 상세를 보여 준다.
 
 ## 3. 내 연구 하나 등록
 
-"지금 하고 계신 연구, 또는 해 보고 싶은 연구 하나를 한 문장으로 말씀해 주세요." → `/project-intake` 로 **대화하며** 카드를 만든다.
+"지금 하고 계신 연구, 또는 해 보고 싶은 연구 하나를 한 문장으로 말씀해 주세요." → `/project-intake` 로 **대화하며** 프로젝트 문서를 만든다.
 자료가 없어도 된다 — 연구 질문 한 문장과 단계(`idea` 또는 `protocol`)면 충분하다. 미배정 팀 하나에 배정한다(예: Mercury).
 끝나면 현황판을 다시 만들어(`python3 _team/dashboard/refresh.py`) 새 팀 줄이 생긴 것을 보여 준다. **여기가 첫 번째 "아, 이렇게 되는구나" 지점이다.**
 
@@ -71,12 +71,12 @@ python3 _team/scripts/discover.py --days 7
 ```
 설정한 관심 영역에서 최근 일주일 문헌이 `_team/ideas/_incoming/` 에 모인다(인터넷이 막히면 `fix_certificates.sh`).
 그다음 `/topic-discovery` 로 그 수집분에서 **연구 질문 후보 카드**를 만든다(Explorer 가 Inventor·Surveyor 를 부른다. 3~5분).
-카드가 생기면 발굴 현황판을 연다 — 새 터미널에서 `python3 _team/scripts/ideas_server.py` → http://localhost:8790.
-화면에서 후보 하나를 **보류**로 눌러 본다 → 카드에 판정이 적히는 것을 보여 준다. **세 번째 "아" 지점.**
+프로젝트 문서가 생기면 발굴 현황판을 연다 — 새 터미널에서 `python3 _team/scripts/ideas_server.py` → http://localhost:8790.
+화면에서 후보 하나를 **보류**로 눌러 본다 → 프로젝트 문서에 판정이 적히는 것을 보여 준다. **세 번째 "아" 지점.**
 
 ## 8. (시간이 남으면) 랩미팅
 
-`/lab-meeting` — 방금 등록한 연구 하나와 후보 카드를 놓고 짧게. 채택·보류·기각 한 번씩. 회의록이 `_team/lab_meetings/` 에 남는다.
+`/lab-meeting` — 방금 등록한 연구 하나와 후보 프로젝트 문서를 놓고 짧게. 채택·보류·기각 한 번씩. 회의록이 `_team/lab_meetings/` 에 남는다.
 
 ## 마치며
 
