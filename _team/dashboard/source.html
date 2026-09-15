@@ -1,5 +1,7 @@
 <meta charset="utf-8">
-<title>Prof. Jeon's Research Lab Dashboard</title>
+<title><!--AUTO:title-->
+AI Research Team 현황판
+<!--/AUTO:title--></title>
 
 <style>
 @font-face{
@@ -528,7 +530,7 @@ footer{border-top:2px solid var(--rule);padding-top:22px;font-size:14px;
     </div>
     <div class="stamp">
 <!--AUTO:stamp-->
-      2026-09-15 20:43 기준<br>
+      2026-09-15 22:45 기준<br>
       AI Research Team<br>
       1인 연구실 · 팀 10 · 연구원 9종
 <!--/AUTO:stamp-->
@@ -886,6 +888,7 @@ footer{border-top:2px solid var(--rule);padding-top:22px;font-size:14px;
 </aside>
 
 <script>
+const LAB_TITLE = document.title;
 const TEAMS = [{"k": "mercury", "name": "Mercury", "code": "미배정", "ko": "수성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "venus", "name": "Venus", "code": "미배정", "ko": "금성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "terra", "name": "Terra", "code": "DEMO-SR", "ko": "지구", "acc": "warn", "badge": ["warn", "대기 1건"], "stage": "protocol", "title": "AI 안저사진 판독의 당뇨망막병증 진단정확도 체계적 고찰 (본보기)", "path": "projects/P01_demo-ecg-sr", "q": "성인 당뇨병 환자의 안저사진에 적용된 AI 판독은 안과 전문의 판독을 기준으로 할 때 의뢰가 필요한 당뇨망막병증을 얼마나 정확히 검출하며, 그 정확도는 촬영 방식과 판독 기준에 따라 어떻게 달라지는가?", "design": ["설계: 체계적 고찰 + <b>조건부</b> 메타분석", "<b>조건부 메타분석 규칙:</b> 같은 표적·같은 기준검사로 2×2 표를 복원할 수 있는 독립 연구가 3편 이상일 때만 통합한다. 그 외에는 서술적 종합으로 처리한다", "대상: 성인 당뇨병 환자, 안저사진. <b>광각 촬영·OCT 단독·소아는 제외</b>", "주요 산출: 민감도·특이도 통합추정, 의뢰가 필요한 단계 기준 PPV·NPV, 유병률별 환산", "비뚤림 평가: QUADAS-2"], "status": ["연구 질문·범위 확정 (2026-08-26). 광각 촬영과 소아를 제외해 이질성을 줄였다", "프로토콜 v0.1 초안 완료 (2026-08-29) — 적격기준, 조건부 통합 규칙, 비뚤림 평가 도구 지정", "검색계획 v0.1 작성 (2026-09-03). 정보원 6개 후보 확정, 아직 시험 검색은 하지 않았다", "제2검토자 자리는 사람을 구하는 것이 먼저다. 못 구하면 Critic 검증 + AI 판정 명시로 보완한다"], "todo": ["<b>검색식 PRESS 회신 반영</b> — 이것이 시험 검색을 여는 열쇠다", "6개 정보원 시험 검색 → 시드 논문 회수율 확인", "프로토콜 v1.0 확정 → 사전등록 제출", "선별 파일럿 25건 이중 선별 → 불일치를 선별 규칙 조항으로", "본선별 개시"], "blockers": ["검색식 동료검토(PRESS) 회신 대기 — 제2검토자"], "facts": [], "warn": "", "blocknote": ""}, {"k": "mars", "name": "Mars", "code": "미배정", "ko": "화성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "jupiter", "name": "Jupiter", "code": "미배정", "ko": "목성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "saturn", "name": "Saturn", "code": "미배정", "ko": "토성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "uranus", "name": "Uranus", "code": "미배정", "ko": "천왕성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "neptune", "name": "Neptune", "code": "미배정", "ko": "해왕성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "ceres", "name": "Ceres", "code": "미배정", "ko": "세레스", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}, {"k": "pluto", "name": "Pluto", "code": "미배정", "ko": "명왕성", "acc": "idle", "badge": ["idle", "프로젝트 미배정"], "stage": "idle", "title": "미배정 — 다음 프로젝트 대기", "path": "", "q": "", "design": [], "status": [], "todo": [], "blockers": [], "facts": [], "warn": "", "blocknote": ""}];
 const GLYPH = {"mercury": "<circle cx=\"30\" cy=\"30\" r=\"11\" fill=\"var(--surface-2)\" stroke=\"var(--ok)\" stroke-width=\"4\"/>", "neptune": "<circle cx=\"30\" cy=\"30\" r=\"15\" fill=\"var(--ok)\" fill-opacity=\".18\" stroke=\"var(--ok)\" stroke-width=\"4\"/>", "saturn": "<ellipse cx=\"30\" cy=\"30\" rx=\"27\" ry=\"8\" fill=\"none\" stroke=\"var(--crit)\" stroke-width=\"3.4\" transform=\"rotate(-18 30 30)\"/><circle cx=\"30\" cy=\"30\" r=\"13\" fill=\"var(--surface-2)\" stroke=\"var(--crit)\" stroke-width=\"4\"/>", "terra": "<circle cx=\"30\" cy=\"30\" r=\"15\" fill=\"var(--surface-2)\" stroke=\"var(--warn)\" stroke-width=\"4\"/><path d=\"M30 15a15 15 0 0 1 0 30\" fill=\"var(--warn)\" fill-opacity=\".25\"/>", "venus": "<circle cx=\"30\" cy=\"30\" r=\"15\" fill=\"var(--warn)\" fill-opacity=\".18\" stroke=\"var(--warn)\" stroke-width=\"4\"/>", "mars": "<circle cx=\"30\" cy=\"30\" r=\"10\" fill=\"var(--warn)\" fill-opacity=\".18\" stroke=\"var(--warn)\" stroke-width=\"4\"/>", "jupiter": "<circle cx=\"30\" cy=\"30\" r=\"22\" fill=\"var(--surface-2)\" stroke=\"var(--crit)\" stroke-width=\"4\"/><path d=\"M11 23h38M13 37h34\" stroke=\"var(--crit)\" stroke-width=\"3.4\" stroke-opacity=\".5\"/>", "uranus": "<ellipse cx=\"30\" cy=\"30\" rx=\"8\" ry=\"26\" fill=\"none\" stroke=\"var(--crit)\" stroke-width=\"3.4\"/><circle cx=\"30\" cy=\"30\" r=\"12\" fill=\"var(--surface-2)\" stroke=\"var(--crit)\" stroke-width=\"4\"/>", "ceres": "<circle cx=\"30\" cy=\"30\" r=\"9\" fill=\"var(--surface-2)\" stroke=\"var(--ink-3)\" stroke-width=\"3.4\" stroke-dasharray=\"5 5\"/>", "pluto": "<circle cx=\"30\" cy=\"30\" r=\"7\" fill=\"var(--surface-2)\" stroke=\"var(--ink-3)\" stroke-width=\"3.4\" stroke-dasharray=\"5 5\"/>"};
 
@@ -931,10 +934,10 @@ function show(key, push){
   if(t){
     detail.innerHTML = build(t);
     detail.hidden = false; main.hidden = true;
-    document.title = t.name + '_' + t.code + " \u2014 Prof. Jeon's Lab";
+    document.title = t.name + '_' + t.code + " \u2014 " + LAB_TITLE;
   } else {
     detail.hidden = true; main.hidden = false; detail.innerHTML = '';
-    document.title = "Prof. Jeon's Research Lab Dashboard";
+    document.title = LAB_TITLE;
   }
   if(push !== false){
     try { history.pushState({ team: key || null }, ''); } catch (e) {}

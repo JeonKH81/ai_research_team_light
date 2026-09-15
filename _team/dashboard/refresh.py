@@ -541,7 +541,7 @@ def main():
     reg, rows = state()
     now = datetime.datetime.now()
     changed = []
-    for name, fn in (("stamp", block_stamp), ("stats", block_stats), ("teams", block_teams),
+    for name, fn in (("title", lambda reg, rows, now: "%s 현황판" % lab_name()), ("stamp", block_stamp), ("stats", block_stats), ("teams", block_teams),
                      ("aging", block_aging), ("blockers", block_blockers),
                      ("nextmeeting", block_nextmeeting)):
         # 표시 사이가 비어 있어도 찾도록 줄바꿈을 느슨하게 본다.
