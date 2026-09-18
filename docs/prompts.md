@@ -28,8 +28,7 @@ VS Code 로 연구실 폴더를 열고, Claude Code 창에 아래 프롬프트�
 
 | 길 | 여는 법 |
 |---|---|
-| Claude 앱 | **Code** 탭 → **Select folder** → 그 폴더 |
-| VS Code | 파일 → 폴더 열기 → 그 폴더 → 왼쪽 Claude 아이콘 |
+| VS Code (권장) | 파일 → 폴더 열기 → 그 폴더 → 왼쪽 Claude 아이콘 |
 | 터미널 | 그 폴더로 가서 `claude` |
 
 창이 열리면 첫 입력:

@@ -13,7 +13,7 @@
 
 | 무엇 | 확인하는 법 | 없으면 |
 |---|---|---|
-| **Claude Code** | 창을 열어 무엇이든 물어본다 | 셋 중 하나를 고릅니다 — **Claude 앱의 Code 탭**(가장 쉬움, 터미널 없음) · **VS Code 의 Claude Code 확장** · **터미널 설치**. 자세한 것은 [준비 문서](prepare.md). **유료 Claude 계정이 필요합니다**(무료 계정은 안 됩니다) |
+| **Claude Code** | 창을 열어 무엇이든 물어본다 | **VS Code 의 Claude Code 확장**을 권합니다(터미널 없이 됩니다). 터미널을 쓰신다면 따로 설치합니다. 자세한 것은 [준비 문서](prepare.md). **유료 Claude 계정이 필요합니다**(무료 계정은 안 됩니다) |
 | Python 3.9 이상 | `python3 --version` (윈도우 `python --version`) | [python.org](https://www.python.org/downloads/) 에서 설치합니다. **윈도우는 설치 첫 화면의 `Add python.exe to PATH` 를 반드시 켭니다** |
 | macOS · Windows · Linux | — | 셋 다 됩니다. 윈도우는 PowerShell 로 진행합니다([윈도우에서는](#윈도우에서는)) |
 | Git | `git --version` | **ZIP 으로 받으면 필요 없습니다.** 터미널로 내려받을 때만 씁니다 |
