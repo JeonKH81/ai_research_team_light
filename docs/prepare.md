@@ -47,13 +47,27 @@ claude --version
 
 ## ② Python 3.9 이상
 
-연구실의 현황판·보고·문헌 수집이 Python 으로 돕니다.
+현황판·보고·문헌 수집이 Python 으로 돕니다. **맥은 대개 이미 있습니다.**
 
-**맥:** 대개 이미 있습니다. 터미널에서 `python3 --version` 을 쳐서 숫자가 나오면 끝입니다.
+**맥:** 터미널에서 `python3 --version` 을 쳐서 숫자가 나오면 끝입니다.
 
-**윈도우:** 거의 없습니다. https://www.python.org/downloads/ 에서 받아 설치하되,
-설치 첫 화면의 **`Add python.exe to PATH`** 를 **반드시 켜고** 설치합니다. 이걸 놓치면 나중에 아무것도 안 됩니다.
-설치 뒤 PowerShell 에서 `python --version` 으로 확인합니다.
+**윈도우:** 거의 없습니다. PowerShell 을 열고 **한 줄**이면 됩니다:
+
+```powershell
+winget install Python.Python.3.12
+```
+
+이 방법은 PATH 를 알아서 잡아 줍니다. 설치가 끝나면 **PowerShell 창을 닫았다 새로 열고** 확인합니다:
+
+```powershell
+python --version
+```
+
+`winget` 을 모른다고 하면 [python.org](https://www.python.org/downloads/) 에서 받아 설치하되,
+설치 첫 화면의 **`Add python.exe to PATH`** 를 **반드시 켜고** 설치합니다.
+
+> **깔지 못했어도 실습에 오세요.** Python 이 없으면 총괄팀장이 대신 처리하도록 해 두었습니다.
+> 문헌 자동 수집 한 가지만 그날 빠집니다.
 
 ---
 
@@ -91,7 +105,7 @@ claude --version
 | 앱에서 `/setup` 같은 것이 목록에 없다 | 앱 판의 알려진 문제입니다. **길 A(VS Code)로 옮기세요** |
 | 앱에 **Code** 탭이 안 보인다 | 앱이 오래됐습니다. 최신으로 다시 받거나 길 A 로 옮깁니다 |
 | 로그인이 안 된다 | 무료 계정입니다. 유료 계정(Pro 이상)이 있어야 합니다 |
-| 윈도우에서 `python` 을 모른다고 한다 | 설치할 때 `Add python.exe to PATH` 를 안 켠 것입니다. 다시 설치하며 켭니다 |
+| 윈도우에서 `python` 을 모른다고 한다 | 창을 닫았다 새로 여세요. 그래도 안 되면 `winget install Python.Python.3.12` 로 다시 깝니다. **못 깔아도 실습은 됩니다** |
 | 윈도우에서 `irm ... not recognized` | PowerShell 이 아니라 명령 프롬프트입니다. 창 맨 앞이 `PS C:\` 인지 봅니다 |
 | 받기·설치가 중간에 끊긴다 | 병원망이 막는 경우입니다. 집이나 휴대폰 테더링으로 해 봅니다 |
 | 압축을 풀면 한글 이름이 깨진다 | 이 폴더에는 한글 파일 이름이 없습니다. 다른 파일을 푼 것인지 확인합니다 |
