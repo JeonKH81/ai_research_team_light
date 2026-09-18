@@ -29,7 +29,14 @@ try:
     line(True, "pyyaml")
 except ImportError:
     line(False, "pyyaml 없음", "python3 -m pip install --user -r requirements.txt")
-line(bool(shutil.which("claude")), "Claude Code (claude 명령)", "Claude Code 를 설치하고 로그인하세요")
+_in_cc = bool(os.environ.get("CLAUDE_CODE_ENTRYPOINT") or os.environ.get("CLAUDECODE"))
+if _in_cc:
+    line(True, "Claude Code — 이 창에서 돌고 있습니다")
+elif shutil.which("claude"):
+    line(True, "Claude Code (claude 명령)")
+else:
+    print("  · Claude Code 의 claude 명령은 없음 — VS Code 확장이나 Claude 앱의 Code 탭으로 쓰면 필요 없습니다")
+    print("      → 터미널에서 claude 를 쓰려면: docs/prepare.md")
 _key = bool(os.environ.get("ANTHROPIC_API_KEY"))
 line(not _key, "ANTHROPIC_API_KEY 가 설정돼 있음 — claude.ai 로그인이 꺼진다" if _key else "ANTHROPIC_API_KEY 없음 (claude.ai 로그인 사용)", "맥·리눅스: unset ANTHROPIC_API_KEY   윈도우 PowerShell: Remove-Item Env:ANTHROPIC_API_KEY")
 for rel in ("_team/lab.yaml", "_team/registry.yaml", "_team/teams.yaml", "projects/_template/PROJECT.md", "_team/dashboard/source.html"):

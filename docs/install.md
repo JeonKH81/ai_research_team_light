@@ -2,16 +2,21 @@
 
 내려받기부터 첫 현황판까지 **20분 안**에 끝납니다. 이어서 `/hands-on` 으로 실습을 시작합니다.
 
+**핸즈온에 참석하신다면 이 문서 대신 [준비 문서](prepare.md)를 보세요** — 터미널 없이 가는 길이 적혀 있습니다.
+
 ---
 
 ## 0. 미리 있어야 하는 것
 
+> **이 절이 안 끝났으면 아래로 내려가지 마세요.** 특히 **Claude Code** — 폴더만 받아서는 아무 일도 일어나지 않습니다.
+> 처음이라면 이 절 대신 **[준비 문서](prepare.md)** 를 보세요. 같은 내용을 그림 없이 순서대로 적어 두었습니다.
+
 | 무엇 | 확인하는 법 | 없으면 |
 |---|---|---|
+| **Claude Code** | 창을 열어 무엇이든 물어본다 | 셋 중 하나를 고릅니다 — **Claude 앱의 Code 탭**(가장 쉬움, 터미널 없음) · **VS Code 의 Claude Code 확장** · **터미널 설치**. 자세한 것은 [준비 문서](prepare.md). **유료 Claude 계정이 필요합니다**(무료 계정은 안 됩니다) |
+| Python 3.9 이상 | `python3 --version` (윈도우 `python --version`) | [python.org](https://www.python.org/downloads/) 에서 설치합니다. **윈도우는 설치 첫 화면의 `Add python.exe to PATH` 를 반드시 켭니다** |
 | macOS · Windows · Linux | — | 셋 다 됩니다. 윈도우는 PowerShell 로 진행합니다([윈도우에서는](#윈도우에서는)) |
-| Git | `git --version` | 맥: 터미널에서 `git` 을 치면 설치를 권합니다. 윈도우: Git for Windows 를 설치합니다 |
-| Python 3.9 이상 | `python3 --version` | [python.org](https://www.python.org/downloads/) 에서 설치합니다 |
-| Claude Code | `claude --version` | [공식 설치 안내](https://code.claude.com/docs/en/setup)대로 설치하고 `claude` 를 한 번 실행해 **유료 Claude 계정**으로 로그인합니다(무료 계정은 Claude Code 를 쓸 수 없습니다). 별도의 열쇠는 필요 없습니다 |
+| Git | `git --version` | **ZIP 으로 받으면 필요 없습니다.** 터미널로 내려받을 때만 씁니다 |
 | 인터넷 | — | Claude Code 대화와 문헌 수집에 필요합니다. 현황판·보고 도구는 인터넷 없이도 돕니다 |
 
 문헌을 받아오는 곳(PubMed·medRxiv·arXiv·ClinicalTrials.gov)은 **등록도 열쇠도 필요 없습니다.**
